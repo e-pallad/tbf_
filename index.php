@@ -37,7 +37,6 @@
       }
 
       $selectid = "SELECT id FROM dokumentennummer ORDER BY id DESC LIMIT 1";
-      $allids = "SELECT id FROM dokumentennummer ORDER BY ID DESC";
       $newid = str_pad($conn->query($selectid)->fetch_row()[0]+1, 6, '0', STR_PAD_LEFT);
     ?>
     <div class="report">
@@ -78,6 +77,21 @@
           <th>Detailklassifizierung</th>
           <th>Dateiname</th>
         </tr>
+        <?php
+          $allids = "SELECT project, creator, id, revision, doctype FROM dokumentennummer ORDER BY ID DESC";
+
+          while ($row <= $conn->query($allids)->fetch_array(MYSQLI_ASSOC)) {
+            echo "<tr>
+            <td>" . $row['project'] . "</td>
+            <td>" . $row['creator'] . "</td>
+            <td>" . $row['id'] . "</td>
+            <td>" . $row['revision'] . "</td>
+            <td>" . $row['doctype'] . "</td>
+            <td>" . $row['project'] . "</td>
+            </tr>";
+          }
+
+         ?>
       </table>
     </div>
 
