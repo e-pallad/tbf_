@@ -10,11 +10,12 @@
     input, select {float: right;}
     input::-webkit-outer-spin-button, input::-webkit-inner-spin-button {-webkit-appearance: none; margin: 0;}
     input[type=number] {-moz-appearance:textfield;}
-    .overview {overflow-y: auto; height: 200px;}
+    .overview {overflow-y: auto; height: 200px; width: 75%;}
     .sticky-head thead th {position: sticky; top: 0; background-color: lightgrey}
     table, th, td {border: 1px solid black;}
     table  {border-collapse: collapse; width: 100%;}
     th, td {padding: 3px;}
+    thead, tbody, tr, td, th {display: block;}
   </style>
   <body>
     <?php
