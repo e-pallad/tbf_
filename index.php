@@ -35,6 +35,7 @@
       }
 
       $selectid = "SELECT id FROM dokumentennummer ORDER BY id DESC LIMIT 1";
+      $allids = "SELECT id FROM dokumentennummer ORDER BY ID DESC";
       $newid = str_pad($conn->query($selectid)->fetch_row()[0]+1, 6, '0', STR_PAD_LEFT);
     ?>
     <div class="report">
@@ -64,6 +65,20 @@
         <p>Detailklassifizierung: <input type="text" name="doctype" /></p><br>
         <input type="submit" name="submit" />
       </form>
+    </div>
+    <div class="overview">
+      <table>
+        <tr>
+          <th>Projektbezeichnung</th>
+          <th>Ersteller</th>
+          <th>Laufnummer</th>
+          <th>Revision</th>
+          <th>Detailklassifizierung</th>
+          <th></th>
+        </tr>
+      </table>
+    </div>>
+
     </div>
     <?php mysqli_close($conn); ?>
   </body>
