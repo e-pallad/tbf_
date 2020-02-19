@@ -80,7 +80,6 @@
         <?php
           $allids = "SELECT project, creator, id, revision, doctype FROM dokumentennummer ORDER BY id DESC";
           $row = $conn->query($allids)->fetch_all(MYSQLI_ASSOC);
-          print_r($row);
 
           foreach ($row as $rows) {
             echo "<tr>";
@@ -89,21 +88,9 @@
             echo "<td>" . $rows['id'] . "</td>";
             echo "<td>" . $rows['revision'] . "</td>";
             echo "<td>" . $rows['doctype'] . "</td>";
-            echo "<td>" . $rows['project'] . "</td>";
+            echo "<td>" . $rows['project'] . "-" . $rows['creator'] . "-" . $rows['id'] . "-" . $rows['revision'] . "-"  . $rows['doctype'] .  "</td>";
             echo "</tr>";
           }
-          /*
-          while ($row = $conn->query($allids)->fetch_array()) {
-            echo "<tr>";
-            echo "<td>" . $row['project'] . "</td>";
-            echo "<td>" . $row['creator'] . "</td>";
-            echo "<td>" . $row['id'] . "</td>";
-            echo "<td>" . $row['revision'] . "</td>";
-            echo "<td>" . $row['doctype'] . "</td>";
-            echo "<td>" . $row['project'] . "</td>";
-            echo "</tr>";
-          }
-          */
          ?>
       </table>
     </div>
