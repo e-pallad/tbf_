@@ -2,6 +2,7 @@
 <html lang="de" dir="ltr">
   <head>
     <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Dokumentennummer</title>
   </head>
   <style>
@@ -10,8 +11,10 @@
     input, select {float: right;}
     input::-webkit-outer-spin-button, input::-webkit-inner-spin-button {-webkit-appearance: none; margin: 0;}
     input[type=number] {-moz-appearance:textfield;}
-    table, th, td {border: 1px solid black;}
-    th, td {padding: 3px;}
+    table, th, td {border: 1px solid black; border-collapse: collapse;}
+    th, td {padding: 10px;}
+    table#overview-table tr:nth-child(even) {background-color: #eee;}
+    table#overview-table tr:nth-child(odd) {background-color: #fff;}
   </style>
   <body>
     <?php
@@ -73,7 +76,7 @@
       </form>
     </div>
     <div class="overview">
-      <table>
+      <table id="overview-table">
         <thead>
           <tr>
             <th>Projektbezeichnung</th>
