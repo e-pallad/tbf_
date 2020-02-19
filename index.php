@@ -6,7 +6,7 @@
   </head>
   <style>
     .report, .overview {display: flex; justify-content: center; align-items: center;}
-    .form {max-width: 450px; margin: auto; padding: 15% 0;}
+    .form {max-width: 450px; margin: auto; padding: 5% 0;}
     input, select {float: right;}
     input::-webkit-outer-spin-button, input::-webkit-inner-spin-button {-webkit-appearance: none; margin: 0;}
     input[type=number] {-moz-appearance:textfield;}
