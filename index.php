@@ -10,8 +10,8 @@
     input, select {float: right;}
     input::-webkit-outer-spin-button, input::-webkit-inner-spin-button {-webkit-appearance: none; margin: 0;}
     input[type=number] {-moz-appearance:textfield;}
-    .overview {overflow-y: auto; height: 100px;}
-    .sticky-head tr th {position: sticky; top: 0;}
+    .overview {overflow-y: auto; height: 200px;}
+    .sticky-head thead th {position: sticky; top: 0;}
     table, th, td {border: 1px solid black;}
     th, td {padding: 3px;}
   </style>
@@ -76,29 +76,33 @@
     </div>
     <div class="overview">
       <table class="sticky-head">
-        <tr>
-          <th>Projektbezeichnung</th>
-          <th>Ersteller</th>
-          <th>Laufnummer</th>
-          <th>Revision</th>
-          <th>Detailklassifizierung</th>
-          <th>Dateiname</th>
-        </tr>
-        <?php
-          $allids = "SELECT project, creator, id, revision, doctype FROM dokumentennummer ORDER BY timestamp DESC";
-          $row = $conn->query($allids)->fetch_all(MYSQLI_ASSOC);
+        <thead>
+          <tr>
+            <th>Projektbezeichnung</th>
+            <th>Ersteller</th>
+            <th>Laufnummer</th>
+            <th>Revision</th>
+            <th>Detailklassifizierung</th>
+            <th>Dateiname</th>
+          </tr>
+        </thead>
+        <tbody>
+          <?php
+            $allids = "SELECT project, creator, id, revision, doctype FROM dokumentennummer ORDER BY timestamp DESC";
+            $row = $conn->query($allids)->fetch_all(MYSQLI_ASSOC);
 
-          foreach ($row as $rows) {
-            echo "<tr>";
-            echo "<td>" . $rows['project'] . "</td>";
-            echo "<td>" . $rows['creator'] . "</td>";
-            echo "<td>" . $rows['id'] . "</td>";
-            echo "<td>" . $rows['revision'] . "</td>";
-            echo "<td>" . $rows['doctype'] . "</td>";
-            echo "<td>" . $rows['project'] . "-" . $rows['creator'] . "-" . $rows['id'] . "-" . $rows['revision'] . "-"  . $rows['doctype'] .  "</td>";
-            echo "</tr>";
-          }
-         ?>
+            foreach ($row as $rows) {
+              echo "<tr>";
+              echo "<td>" . $rows['project'] . "</td>";
+              echo "<td>" . $rows['creator'] . "</td>";
+              echo "<td>" . $rows['id'] . "</td>";
+              echo "<td>" . $rows['revision'] . "</td>";
+              echo "<td>" . $rows['doctype'] . "</td>";
+              echo "<td>" . $rows['project'] . "-" . $rows['creator'] . "-" . $rows['id'] . "-" . $rows['revision'] . "-"  . $rows['doctype'] .  "</td>";
+              echo "</tr>";
+            }
+           ?>
+        </tbody>
       </table>
     </div>
     <?php mysqli_close($conn); ?>
