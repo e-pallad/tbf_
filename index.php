@@ -10,6 +10,8 @@
     input, select {float: right;}
     input::-webkit-outer-spin-button, input::-webkit-inner-spin-button {-webkit-appearance: none; margin: 0;}
     input[type=number] {-moz-appearance:textfield;}
+    .overview {overflow-y: auto; height: 100px;}
+    .sticky-head tr th {position: sticky; top: 0;}
     table, th, td {border: 1px solid black;}
     th, td {padding: 3px;}
   </style>
@@ -73,7 +75,7 @@
       </form>
     </div>
     <div class="overview">
-      <table>
+      <table class="sticky-head">
         <tr>
           <th>Projektbezeichnung</th>
           <th>Ersteller</th>
