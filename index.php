@@ -44,9 +44,6 @@
           $message = "Erfolgreich! Das Dokument hat diesen Namen: <br>".$project."-".$creator."-".$id."-".$revision."-".$doctype."-";
         }
       }
-
-      $selectid = "SELECT id FROM dokumentennummer ORDER BY id DESC LIMIT 1";
-      $newid = str_pad($conn->query($selectid)->fetch_row()[0]+1, 6, '0', STR_PAD_LEFT);
     ?>
     <div class="report">
       <p><?php echo $message ?></p>
@@ -70,7 +67,6 @@
           };
           ?>
           </select></p><br>
-        <?php /* <p>Laufnummer: <input type="number" name="id" readonly="readonly" value="<?php echo $newid; ?>" /></p><br> */?>
         <p>Revision: <input type="number" name="revision" /></p><br>
         <p>Detailklassifizierung: <input type="text" name="doctype" /></p><br>
         <input type="submit" name="submit" />
@@ -87,7 +83,7 @@
           <th>Dateiname</th>
         </tr>
         <?php
-          $allids = "SELECT project, creator, id, revision, doctype FROM dokumentennummer ORDER BY id DESC";
+          $allids = "SELECT project, creator, id, revision, doctype FROM dokumentennummer ORDER BY timestamp DESC";
           $row = $conn->query($allids)->fetch_all(MYSQLI_ASSOC);
 
           foreach ($row as $rows) {
@@ -102,8 +98,6 @@
           }
          ?>
       </table>
-    </div>
-
     </div>
     <?php mysqli_close($conn); ?>
   </body>
