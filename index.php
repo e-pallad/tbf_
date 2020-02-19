@@ -79,7 +79,8 @@
         </tr>
         <?php
           $allids = "SELECT project, creator, id, revision, doctype FROM dokumentennummer ORDER BY id DESC";
-
+          print_r($conn->query($allids)->fetch_array());
+          /*
           while ($row = $conn->query($allids)->fetch_array()) {
             echo "<tr>";
             echo "<td>" . $row['project'] . "</td>";
@@ -90,7 +91,7 @@
             echo "<td>" . $row['project'] . "</td>";
             echo "</tr>";
           }
-
+          */
          ?>
       </table>
     </div>
