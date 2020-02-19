@@ -24,9 +24,14 @@
 
       $message = "";
       if(isset($_POST['submit'])) {
+        $mysqlifilter = $_POST['creator'];
+
+        $selectid = "SELECT id FROM dokumentennummer WHERE 'creator' = " . $mysqlifilter . " ORDER BY id DESC LIMIT 1";
+        $newid = str_pad($conn->query($selectid)->fetch_row()[0]+1, 6, '0', STR_PAD_LEFT);
+
         $project = mysqli_real_escape_string($conn, $_POST['project']);
         $creator = mysqli_real_escape_string($conn, $_POST['creator']);
-        $id = mysqli_real_escape_string($conn, $_POST['id']);
+        $id = $newid;
         $revision = mysqli_real_escape_string($conn, $_POST['revision']);
         $doctype = mysqli_real_escape_string($conn, $_POST['doctype']);
 
@@ -61,7 +66,7 @@
           };
           ?>
           </select></p><br>
-        <p>Laufnummer: <input type="number" name="id" readonly="readonly" value="<?php echo $newid; ?>" /></p><br>
+        <?php /* <p>Laufnummer: <input type="number" name="id" readonly="readonly" value="<?php echo $newid; ?>" /></p><br> */?>
         <p>Revision: <input type="number" name="revision" /></p><br>
         <p>Detailklassifizierung: <input type="text" name="doctype" /></p><br>
         <input type="submit" name="submit" />
