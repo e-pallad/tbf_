@@ -13,6 +13,7 @@
     .overview {overflow-y: auto; height: 200px;}
     .sticky-head thead th {position: sticky; top: 0; background-color: lightgrey}
     table, th, td {border: 1px solid black;}
+    table  {border-collapse: collapse; width: 100%;}
     th, td {padding: 3px;}
   </style>
   <body>
