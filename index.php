@@ -38,7 +38,11 @@
         $insertid = "INSERT INTO dokumentennummer (project, creator, id, revision, doctype) VALUES ('$project', '$creator', '$id', '$revision', '$doctype')";
         $conn->query($insertid);
 
-        $message = "Erfolgreich! Das Dokument hat diesen Namen: <br>".$project."-".$creator."-".$id."-".$revision."-".$doctype."-";
+        if ($conn->connect_errno) {
+          $message = "Irgendwas lief schief, mit folgender Fehlernummer: " . $conn->connect_errno;
+        } else {
+          $message = "Erfolgreich! Das Dokument hat diesen Namen: <br>".$project."-".$creator."-".$id."-".$revision."-".$doctype."-";
+        }
       }
 
       $selectid = "SELECT id FROM dokumentennummer ORDER BY id DESC LIMIT 1";
