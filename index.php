@@ -5,11 +5,13 @@
     <title>Dokumentennummer</title>
   </head>
   <style>
-    .report {display: flex; justify-content: center; align-items: center;}
+    .report, .overview {display: flex; justify-content: center; align-items: center;}
     .form {max-width: 450px; margin: auto; padding: 15% 0;}
     input, select {float: right;}
     input::-webkit-outer-spin-button, input::-webkit-inner-spin-button {-webkit-appearance: none; margin: 0;}
     input[type=number] {-moz-appearance:textfield;}
+    table, th, td {border: 1px solid black;}
+    th, td {padding: 3px;}
   </style>
   <body>
     <?php
@@ -74,10 +76,10 @@
           <th>Laufnummer</th>
           <th>Revision</th>
           <th>Detailklassifizierung</th>
-          <th></th>
+          <th>Dateiname</th>
         </tr>
       </table>
-    </div>>
+    </div>
 
     </div>
     <?php mysqli_close($conn); ?>
