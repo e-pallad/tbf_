@@ -78,17 +78,17 @@
           <th>Dateiname</th>
         </tr>
         <?php
-          $allids = "SELECT project, creator, id, revision, doctype FROM dokumentennummer ORDER BY ID DESC";
+          $allids = "SELECT project, creator, id, revision, doctype FROM dokumentennummer ORDER BY id DESC";
 
-          while ($row <= $conn->query($allids)->fetch_array(MYSQLI_ASSOC)) {
-            echo "<tr>
-            <td>" . $row['project'] . "</td>
-            <td>" . $row['creator'] . "</td>
-            <td>" . $row['id'] . "</td>
-            <td>" . $row['revision'] . "</td>
-            <td>" . $row['doctype'] . "</td>
-            <td>" . $row['project'] . "</td>
-            </tr>";
+          while ($row = $conn->query($allids)->fetch_array()) {
+            echo "<tr>";
+            echo "<td>" . $row['project'] . "</td>";
+            echo "<td>" . $row['creator'] . "</td>";
+            echo "<td>" . $row['id'] . "</td>";
+            echo "<td>" . $row['revision'] . "</td>";
+            echo "<td>" . $row['doctype'] . "</td>";
+            echo "<td>" . $row['project'] . "</td>";
+            echo "</tr>";
           }
 
          ?>
