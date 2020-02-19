@@ -79,7 +79,19 @@
         </tr>
         <?php
           $allids = "SELECT project, creator, id, revision, doctype FROM dokumentennummer ORDER BY id DESC";
-          print_r($conn->query($allids)->fetch_all(MYSQLI_ASSOC));
+          $row = $conn->query($allids)->fetch_all(MYSQLI_ASSOC);
+          print_r($row);
+
+          foreach ($row as $rows) {
+            echo "<tr>";
+            echo "<td>" . $rows['project'] . "</td>";
+            echo "<td>" . $rows['creator'] . "</td>";
+            echo "<td>" . $rows['id'] . "</td>";
+            echo "<td>" . $rows['revision'] . "</td>";
+            echo "<td>" . $rows['doctype'] . "</td>";
+            echo "<td>" . $rows['project'] . "</td>";
+            echo "</tr>";
+          }
           /*
           while ($row = $conn->query($allids)->fetch_array()) {
             echo "<tr>";
