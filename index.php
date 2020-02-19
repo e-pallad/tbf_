@@ -11,7 +11,7 @@
     input::-webkit-outer-spin-button, input::-webkit-inner-spin-button {-webkit-appearance: none; margin: 0;}
     input[type=number] {-moz-appearance:textfield;}
     .overview {overflow-y: auto; height: 200px;}
-    .sticky-head thead th {position: sticky; top: 0;}
+    .sticky-head thead th {position: sticky; top: 0; background-color: lightgrey}
     table, th, td {border: 1px solid black;}
     th, td {padding: 3px;}
   </style>
