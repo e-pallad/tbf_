@@ -26,7 +26,7 @@
       if(isset($_POST['submit'])) {
         $mysqlifilter = $_POST['creator'];
 
-        $selectid = "SELECT id FROM dokumentennummer WHERE 'creator' = " . $mysqlifilter . " ORDER BY id DESC LIMIT 1";
+        $selectid = "SELECT id FROM dokumentennummer WHERE creator = " . $mysqlifilter . " ORDER BY id DESC LIMIT 1";
         $newid = str_pad($conn->query($selectid)->fetch_row()[0]+1, 6, '0', STR_PAD_LEFT);
 
         $project = mysqli_real_escape_string($conn, $_POST['project']);
