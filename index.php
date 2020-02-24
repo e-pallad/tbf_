@@ -7,7 +7,8 @@
   </head>
   <style>
     .report, .overview, .logo {display: flex; justify-content: center; align-items: center;}
-    .form {max-width: 450px; margin: auto; padding: 5% 0;}
+    .logo-img {max-width: 200px;}
+    .form {max-width: 450px; margin: auto;}
     input, select {float: right;}
     input::-webkit-outer-spin-button, input::-webkit-inner-spin-button {-webkit-appearance: none; margin: 0;}
     input[type=number] {-moz-appearance:textfield;}
@@ -49,7 +50,7 @@
       }
     ?>
     <div class="logo">
-      <img src="/Logokva.jpg" alt="kva-logo" />
+      <img class="logo-img" src="/Logokva.jpg" alt="kva-logo" />
     </div>
     <div class="report">
       <p><?php echo $message ?></p>
