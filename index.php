@@ -6,7 +6,7 @@
     <title>Dokumentennummer</title>
   </head>
   <style>
-    .report, .overview, .logo {display: flex; justify-content: center; align-items: center;}
+    .report, .logo {display: flex; justify-content: center; align-items: center;}
     .logo-img {max-width: 200px;}
     .form {max-width: 450px; margin: auto;}
     input, select {float: right;}
@@ -78,37 +78,6 @@
         <p>Detailklassifizierung: <input type="text" name="doctype" /></p><br>
         <input type="submit" name="submit" />
       </form>
-    </div>
-    <div class="overview">
-      <table id="overview-table">
-        <thead>
-          <tr>
-            <th>Projektbezeichnung</th>
-            <th>Ersteller</th>
-            <th>Laufnummer</th>
-            <th>Revision</th>
-            <th>Detailklassifizierung</th>
-            <th>Dateiname</th>
-          </tr>
-        </thead>
-        <tbody>
-          <?php
-            $allids = "SELECT project, creator, id, revision, doctype FROM dokumentennummer ORDER BY timestamp DESC";
-            $row = $conn->query($allids)->fetch_all(MYSQLI_ASSOC);
-
-            foreach ($row as $rows) {
-              echo "<tr>";
-              echo "<td>" . $rows['project'] . "</td>";
-              echo "<td>" . $rows['creator'] . "</td>";
-              echo "<td>" . $rows['id'] . "</td>";
-              echo "<td>" . $rows['revision'] . "</td>";
-              echo "<td>" . $rows['doctype'] . "</td>";
-              echo "<td>" . $rows['project'] . "-" . $rows['creator'] . "-" . $rows['id'] . "-" . $rows['revision'] . "-"  . $rows['doctype'] .  "</td>";
-              echo "</tr>";
-            }
-           ?>
-        </tbody>
-      </table>
     </div>
     <?php mysqli_close($conn); ?>
   </body>
