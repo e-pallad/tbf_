@@ -10,7 +10,7 @@
     .report, .logo {display: flex; justify-content: center; align-items: center;}
     .logo-img {max-width: 250px;}
     .form {max-width: 600px; margin: auto;}
-    input, select {float: right;}
+    input, select {float: right; font-size: 75%; padding: 5px;}
     input::-webkit-outer-spin-button, input::-webkit-inner-spin-button {-webkit-appearance: none; margin: 0;}
     input[type=number] {-moz-appearance:textfield;}
     table, th, td {border: 1px solid black; border-collapse: collapse;}
