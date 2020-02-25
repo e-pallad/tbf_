@@ -9,7 +9,7 @@
     body {font-family: Arial, Calibri, sans-serif; font-size: 21px;}
     .report, .logo {display: flex; justify-content: center; align-items: center;}
     .logo-img {max-width: 200px;}
-    .form {max-width: 450px; margin: auto;}
+    .form {max-width: 600px; margin: auto;}
     input, select {float: right;}
     input::-webkit-outer-spin-button, input::-webkit-inner-spin-button {-webkit-appearance: none; margin: 0;}
     input[type=number] {-moz-appearance:textfield;}
