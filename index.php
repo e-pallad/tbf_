@@ -40,13 +40,13 @@
         $revision = mysqli_real_escape_string($conn, $_POST['revision']);
         $doctype = mysqli_real_escape_string($conn, $_POST['doctype']);
 
-        $insertid = "INSERT INTO dokumentennummer (project, creator, id, doctype) VALUES ('$project', '$creator', '$id', '$doctype')";
+        $insertid = "INSERT INTO dokumentennummer (project, creator, id, revision, doctype) VALUES ('$project', '$creator', '$id', '$revision', '$doctype')";
         $conn->query($insertid);
 
         if ($conn->connect_errno) {
           $message = "Irgendwas lief schief, mit folgender Fehlernummer: " . $conn->connect_errno;
         } else {
-          $message = "Erfolgreich! Das Dokument hat diesen Namen: <br>".$project."-".$creator."-".$id."-".$doctype."-";
+          $message = "Erfolgreich! Das Dokument hat diesen Namen: <br>".$project."-".$creator."-".$id."-".$revision."-".$doctype."-";
         }
       }
     ?>
@@ -58,8 +58,8 @@
     </div>
     <div class="form">
       <form action="<?php echo htmlspecialchars($_SERVER["PHP_SELF"]);?>" method="post">
-        <label for="project">Projektbezeichnung: </label><input type="text" name="project" value="Linth" placeholder="Linth"/><br>
-        <label for="creator">Ersteller: </label><select name="creator">
+        <p>Projektbezeichnung: <input type="text" name="project" value="Linth" placeholder="Linth"/></p><br>
+        <p>Ersteller: <select name="creator">
           <?php
           $optionen = array(
             '0100' => "TBF allgemein/interdisziplinär (GPL / TPL)",
@@ -74,8 +74,9 @@
             echo "<option value=" . $value . ">" . $beschreibung . "</option>";
           };
           ?>
-          </select><br>
-        <label for="doctype">Freies Feld: </label><input type="text" name="doctype" /><br>
+          </select></p><br>
+        <p>Revision: <input type="number" name="revision" /></p><br>
+        <p>Detailklassifizierung: <input type="text" name="doctype" /></p><br>
         <input type="submit" name="submit" />
       </form>
     </div>
