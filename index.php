@@ -40,13 +40,13 @@
         $revision = mysqli_real_escape_string($conn, $_POST['revision']);
         $doctype = mysqli_real_escape_string($conn, $_POST['doctype']);
 
-        $insertid = "INSERT INTO dokumentennummer (project, creator, id, revision, doctype) VALUES ('$project', '$creator', '$id', '$revision', '$doctype')";
+        $insertid = "INSERT INTO dokumentennummer (project, creator, id, doctype) VALUES ('$project', '$creator', '$id', '$doctype')";
         $conn->query($insertid);
 
         if ($conn->connect_errno) {
           $message = "Irgendwas lief schief, mit folgender Fehlernummer: " . $conn->connect_errno;
         } else {
-          $message = "Erfolgreich! Das Dokument hat diesen Namen: <br>".$project."-".$creator."-".$id."-".$revision."-".$doctype."-";
+          $message = "Erfolgreich! Das Dokument hat diesen Namen: <br>".$project."-".$creator."-".$id."-".$doctype."-";
         }
       }
     ?>
@@ -75,7 +75,6 @@
           };
           ?>
           </select></p><br>
-        <p>Revision: <input type="number" name="revision" /></p><br>
         <p>Detailklassifizierung: <input type="text" name="doctype" /></p><br>
         <input type="submit" name="submit" />
       </form>
