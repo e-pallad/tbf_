@@ -75,7 +75,7 @@
           };
           ?>
           </select></p><br>
-        <p>Detailklassifizierung: <input type="text" name="doctype" /></p><br>
+        <p>Freies Feld: <input type="text" name="doctype" /></p><br>
         <input type="submit" name="submit" />
       </form>
     </div>
