@@ -67,7 +67,7 @@
 
           header('Content-Type: text/csv');
           header('Content-Disposition: attachment; filename="' . $filename . '";');
-
+          ob_clean();
           fpassthru($file);
           fclose($file);
         }
