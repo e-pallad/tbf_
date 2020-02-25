@@ -35,7 +35,6 @@
         $project = mysqli_real_escape_string($conn, $_POST['project']);
         $creator = mysqli_real_escape_string($conn, $_POST['creator']);
         $id = $newid;
-        $revision = mysqli_real_escape_string($conn, $_POST['revision']);
         $doctype = mysqli_real_escape_string($conn, $_POST['doctype']);
 
         $insertid = "INSERT INTO dokumentennummer (project, creator, id, doctype) VALUES ('$project', '$creator', '$id', '$doctype')";
@@ -44,7 +43,7 @@
         if ($conn->connect_errno) {
           $message = "Irgendwas lief schief, mit folgender Fehlernummer: " . $conn->connect_errno;
         } else {
-          $message = "Erfolgreich! Das Dokument hat diesen Namen: <br>".$project."-".$creator."-".$id."-".$doctype."-";
+          $message = "Erfolgreich! Das Dokument hat diesen Namen: <br>".$project."-".$creator."-".$id."-".$doctype;
         }
       } elseif (isset($_POST['create-csv'])) {
         $selectall = "SELECT * FROM dokumentennummer";
