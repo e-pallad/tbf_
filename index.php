@@ -52,7 +52,7 @@
 
         if ($query->num_rows > 0) {
           $delimiter = ",";
-          $filename = date("Ymd") . "_datenexport.csv";
+          $filename = date("Ymd") . "_" . time() . "_datenexport.csv";
 
           $file = fopen('php://memory', 'w');
           $header = array("Timestamp", "Projekt", "Ersteller", "Laufnummer", "Freifeld");
