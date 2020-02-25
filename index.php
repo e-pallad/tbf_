@@ -58,8 +58,8 @@
     </div>
     <div class="form">
       <form action="<?php echo htmlspecialchars($_SERVER["PHP_SELF"]);?>" method="post">
-        <label for="project">Projektbezeichnung: </label><input type="text" name="project" value="Linth" placeholder="Linth"/><br>
-        <label for="creator">Ersteller: </label><select name="creator">
+        <label for="project">Projektbezeichnung: </label><input id="project" type="text" name="project" value="Linth" placeholder="Linth"/><br>
+        <label for="creator">Ersteller: </label><select id="creator" name="creator">
           <?php
           $optionen = array(
             '0100' => "TBF allgemein/interdisziplinär (GPL / TPL)",
@@ -75,7 +75,7 @@
           };
           ?>
           </select><br>
-        <label for="doctype">Freies Feld: </label><input type="text" name="doctype" /><br>
+        <label for="doctype">Freies Feld: </label><input id="doctype" type="text" name="doctype" /><br>
         <input type="submit" name="submit" />
       </form>
     </div>
