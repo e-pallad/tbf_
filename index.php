@@ -6,6 +6,7 @@
     <title>Dokumentennummer</title>
   </head>
   <style>
+    body {font-family: Arial, Calibri, sans-serif; font-size: 21px;}
     .report, .logo {display: flex; justify-content: center; align-items: center;}
     .logo-img {max-width: 200px;}
     .form {max-width: 450px; margin: auto;}
@@ -57,7 +58,7 @@
     </div>
     <div class="form">
       <form action="<?php echo htmlspecialchars($_SERVER["PHP_SELF"]);?>" method="post">
-        <p>Projektbezeichnung: <input type="text" name="project" placeholder="Linth"/></p><br>
+        <p>Projektbezeichnung: <input type="text" name="project" value="Linth" placeholder="Linth"/></p><br>
         <p>Ersteller: <select name="creator">
           <?php
           $optionen = array(
