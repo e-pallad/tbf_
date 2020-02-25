@@ -14,10 +14,7 @@
     input, select {float: right; font-size: 75%; padding: 5px;}
     input::-webkit-outer-spin-button, input::-webkit-inner-spin-button {-webkit-appearance: none; margin: 0;}
     input[type=number] {-moz-appearance:textfield;}
-    table, th, td {border: 1px solid black; border-collapse: collapse;}
-    th, td {padding: 10px;}
-    table#overview-table tr:nth-child(even) {background-color: #eee;}
-    table#overview-table tr:nth-child(odd) {background-color: #fff;}
+    .csv-button {margin-right: 5px;}
   </style>
   <body>
     <?php
@@ -49,7 +46,7 @@
         } else {
           $message = "Erfolgreich! Das Dokument hat diesen Namen: <br>".$project."-".$creator."-".$id."-".$doctype."-";
         }
-      } elseif (isset($_POST[''])) {
+      } elseif (isset($_POST['create-csv'])) {
         $selectall = "SELECT * FROM dokumentennummer";
         $query = $conn->query($selectall);
 
@@ -112,7 +109,7 @@
     </div>
     <div class="csv-form">
       <form action="<?php echo htmlspecialchars($_SERVER["PHP_SELF"]);?>" method="post">
-        <input type="submit" name="create-csv" value="CSV generieren" />
+        <input type="submit" name="create-csv" value="CSV generieren" class="csv-button" />
       </form>
     </div>
     <?php mysqli_close($conn); ?>
