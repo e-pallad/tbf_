@@ -106,7 +106,7 @@
           };
           ?>
           </select></p><br>
-        <p>Freies Feld: <input type="text" name="doctype" /></p><br>
+        <p>Freies Feld: <input type="text" name="doctype" pattern="\d{0,10}" placeholder="maximal 10 Zahlen" /></p><br>
         <input type="submit" name="submit" />
       </form>
     </div>
