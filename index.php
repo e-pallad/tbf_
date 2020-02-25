@@ -54,7 +54,7 @@
           $delimiter = ",";
           $filename = date("Ymd") . "_datenexport.csv";
 
-          $file = tmpfile();
+          $file = fopen('php://memory', 'w');
           $header = array("Timestamp", "Projekt", "Ersteller", "Laufnummer", "Freifeld");
           fputcsv($file, $header, $delimiter);
 
@@ -69,7 +69,8 @@
           header('Content-Disposition: attachment; filename="' . $filename . '";');
 
           fpassthru($file);
-          fclose($file);
+
+          exit;
         }
       }
     ?>
