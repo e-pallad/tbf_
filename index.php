@@ -46,6 +46,31 @@
         } else {
           $message = "Erfolgreich! Das Dokument hat diesen Namen: <br>".$project."-".$creator."-".$id."-".$doctype."-";
         }
+      } elseif (isset($_POST['create-csv'])) {
+        $selectall = "SELECT * FROM dokumentennummer";
+        $query = $conn->query($selectall);
+
+        if ($query->num_rows > 0) {
+          $delimiter = ",";
+          $filename = date("Ymd") . "_datenexport.csv";
+
+          $file = tmpfile();
+          $header = array("Timestamp", "Projekt", "Ersteller", "Laufnummer", "Freifeld");
+          fputcsv($file, $header, $delimiter);
+
+          while ($row = $query->fetch_assoc()) {
+            $rowdata = array($row['timestamp'], $row['project'], $row['creator'], $row['id'], $row['doctype']);
+            fputcsv($file, $rowdata, $delimiter);
+          }
+
+          fseek($file, 0);
+
+          header('Content-Type: text/csv');
+          header('Content-Disposition: attachment; filename="' . $filename . '";');
+
+          fpassthru($file);
+          fclose($file);
+        }
       }
     ?>
     <div class="logo">
@@ -91,31 +116,3 @@
     <?php mysqli_close($conn); ?>
   </body>
 </html>
-<?php
-if (isset($_POST['create-csv'])) {
-  $selectall = "SELECT * FROM dokumentennummer";
-  $query = $conn->query($selectall);
-
-  if ($query->num_rows > 0) {
-    $delimiter = ",";
-    $filename = date("Ymd") . "_datenexport.csv";
-
-    $file = tmpfile();
-    $header = array("Timestamp", "Projekt", "Ersteller", "Laufnummer", "Freifeld");
-    fputcsv($file, $header, $delimiter);
-
-    while ($row = $query->fetch_assoc()) {
-      $rowdata = array($row['timestamp'], $row['project'], $row['creator'], $row['id'], $row['doctype']);
-      fputcsv($file, $rowdata, $delimiter);
-    }
-
-    fseek($file, 0);
-
-    header('Content-Type: text/csv');
-    header('Content-Disposition: attachment; filename="' . $filename . '";');
-    ob_clean();
-    fpassthru($file);
-    fclose($file);
-  }
-}
- ?>
