@@ -43,7 +43,7 @@
         if ($conn->connect_errno) {
           $message = "Irgendwas lief schief, mit folgender Fehlernummer: " . $conn->connect_errno;
         } else {
-          $message = "Erfolgreich! Das Dokument hat diesen Namen: <br>".$project."-".$creator."-".$id."-".str_pad($doctype, 10, '0', STR_PAD_LEFT);
+          $message = "Erfolgreich! Das Dokument hat diesen Namen: <br>".$project."-".$creator."-".$id."-".$doctype;
         }
       } elseif (isset($_POST['create-csv'])) {
         $selectall = "SELECT * FROM dokumentennummer";
