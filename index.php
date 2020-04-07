@@ -65,7 +65,7 @@
           $message = "Erfolgreich! Das Dokument hat diesen Namen: <br>".$project."-".$creator."-".$id."-".$revision."-".$classification."-".$add_text;
         }
       } elseif (isset($_POST['create-csv'])) {
-        $selectall = "SELECT * FROM dokumentennummer";
+        $selectall = "SELECT * FROM filename";
         $query = $conn->query($selectall);
 
         if ($query->num_rows > 0) {
@@ -73,11 +73,19 @@
           $filename = date("Ymd") . "_" . time() . "_datenexport.csv";
 
           $file = fopen('php://memory', 'w');
-          $header = array("Timestamp", "Projekt", "Ersteller", "Laufnummer", "Freifeld");
+          $header = array("Timestamp", "Projekt", "Ersteller", "Laufnummer", "Revision", "Detailklassifizierung", "Titel");
           fputcsv($file, $header, $delimiter);
 
           while ($row = $query->fetch_assoc()) {
-            $rowdata = array($row['timestamp'], $row['project'], $row['creator'], $row['id'], $row['doctype']);
+            $rowdata = array(
+              $row['timestamp'],
+              $row['project'],
+              $row['creator'],
+              $row['id'],
+              $row['revision'],
+              $row['classification'],
+              $row['add_text']
+            );
             fputcsv($file, $rowdata, $delimiter);
           }
 
@@ -125,7 +133,7 @@
           ?>
           </select></p><br>
         <p>Laufnummer: <input type="text" name="id" value="<?php echo $fetchedId; ?>" readonly> </p><br>
-        <p>Revision: <input type="number" name="revision" value="00" placeholder="00" maxlength="2"> </p><br>
+        <p>Revision: <input type="number" name="revision" value="0" placeholder="00" maxlength="2"> </p><br>
         <p>Dateiklassifizierung: <input type="text" name="classification" value=""> </p><br>
         <p>Dateibezeichnung: <input type="text" name="add_text" pattern="[a-zA-ZäöüÄÖÜ _-]{0,25}" placeholder="max. 25 Zeichen" /></p><br>
         <input type="submit" name="submit" />
