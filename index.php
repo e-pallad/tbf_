@@ -3,7 +3,7 @@
   <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Dokumentennummer</title>
+    <title>Dokumententitel</title>
   </head>
   <style>
     body {font-family: Arial, Calibri, sans-serif; font-size: 21px;}
@@ -24,9 +24,12 @@
       $dbname = "tbf_";
 
       $conn = new mysqli($servername, $username, $password, $dbname);
+      $fetchedId = str_pad($conn->query($selectid)->fetch_row()[0]+1, 6, '0', STR_PAD_LEFT);
 
       $message = "";
       if(isset($_POST['submit'])) {
+
+        /*
         $mysqlifilter = $_POST['creator'];
 
         $selectid = "SELECT id FROM dokumentennummer WHERE creator = " . $mysqlifilter . " ORDER BY id DESC LIMIT 1";
@@ -40,10 +43,48 @@
         $insertid = "INSERT INTO dokumentennummer (project, creator, id, doctype) VALUES ('$project', '$creator', '$id', '$doctype')";
         $conn->query($insertid);
 
+        $conn->query($insertid);
+
         if ($conn->connect_errno) {
           $message = "Irgendwas lief schief, mit folgender Fehlernummer: " . $conn->connect_errno;
         } else {
           $message = "Erfolgreich! Das Dokument hat diesen Namen: <br>".$project."-".$creator."-".$id."-".$doctype;
+        }
+
+        */
+
+        $selectid = "SELECT id FROM filename ORDER BY id DESC LIMIT 1";
+        $newid = str_pad($conn->query($selectid)->fetch_row()[0]+1, 6, '0', STR_PAD_LEFT);
+
+        $project = mysqli_real_escape_string($conn, $_POST['project']);
+        $creator = mysqli_real_escape_string($conn, $_POST['creator']);
+        $id = $newid;
+        $revision = mysqli_real_escape_string($conn, $_POST['revision']);
+        $classification = mysqli_real_escape_string($conn, $_POST['classification']);
+        $add_text = mysqli_real_escape_string($conn, $_POST['add_text']);
+
+        $insertid = "INSERT INTO filename (
+          project,
+          creator,
+          id,
+          revision,
+          classification,
+          add_text
+        ) VALUES (
+          '$project',
+          '$creator',
+          '$id',
+          '$revision',
+          '$classification',
+          '$add_text'
+        )";
+
+        $conn->query($insertid);
+
+        if ($conn->connect_errno) {
+          $message = "Irgendwas lief schief, mit folgender Fehlernummer: " . $conn->connect_errno;
+        } else {
+          $message = "Erfolgreich! Das Dokument hat diesen Namen: <br>".$project."-".$creator."-".$id."-".$revision."-".$classification."-".$add_text;
         }
       } elseif (isset($_POST['create-csv'])) {
         $selectall = "SELECT * FROM dokumentennummer";
@@ -105,7 +146,10 @@
           };
           ?>
           </select></p><br>
-        <p>Dateibezeichnung: <input type="text" name="doctype" pattern="\w{0,10}" placeholder="max. 10 Zeichen" /></p><br>
+        <p>Laufnummer: <input type="text" name="id" value="<?php echo $fetchedId; ?>" readonly> </p><br>
+        <p>Revision: <input type="number" name="revision" value="00" placeholder="00" maxlength="2"> </p><br>
+        <p>Dateiklassifizierung: <input type="text" name="classification" value=""> </p><br>
+        <p>Dateibezeichnung: <input type="text" name="add_text" pattern="\w{0,10}" placeholder="max. 10 Zeichen" /></p><br>
         <input type="submit" name="submit" />
       </form>
     </div>
