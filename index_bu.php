@@ -24,11 +24,35 @@
       $dbname = "tbf_";
 
       $conn = new mysqli($servername, $username, $password, $dbname);
-
       $fetchedId = str_pad($conn->query($selectid)->fetch_row()[0]+1, 6, '0', STR_PAD_LEFT);
-      $message = "";
 
+      $message = "";
       if(isset($_POST['submit'])) {
+
+        /*
+        $mysqlifilter = $_POST['creator'];
+
+        $selectid = "SELECT id FROM dokumentennummer WHERE creator = " . $mysqlifilter . " ORDER BY id DESC LIMIT 1";
+        $newid = str_pad($conn->query($selectid)->fetch_row()[0]+1, 6, '0', STR_PAD_LEFT);
+
+        $project = mysqli_real_escape_string($conn, $_POST['project']);
+        $creator = mysqli_real_escape_string($conn, $_POST['creator']);
+        $id = $newid;
+        $doctype = mysqli_real_escape_string($conn, $_POST['doctype']);
+
+        $insertid = "INSERT INTO dokumentennummer (project, creator, id, doctype) VALUES ('$project', '$creator', '$id', '$doctype')";
+        $conn->query($insertid);
+
+        $conn->query($insertid);
+
+        if ($conn->connect_errno) {
+          $message = "Irgendwas lief schief, mit folgender Fehlernummer: " . $conn->connect_errno;
+        } else {
+          $message = "Erfolgreich! Das Dokument hat diesen Namen: <br>".$project."-".$creator."-".$id."-".$doctype;
+        }
+
+        */
+
         $selectid = "SELECT id FROM filename ORDER BY id DESC LIMIT 1";
         $newid = str_pad($conn->query($selectid)->fetch_row()[0]+1, 6, '0', STR_PAD_LEFT);
 
@@ -122,7 +146,7 @@
           };
           ?>
           </select></p><br>
-        <p>Laufnummer: <input type="text" name="id" value="<?php echo $fetchedId ?>" readonly> </p><br>
+        <p>Laufnummer: <input type="text" name="id" value="<?php echo $fetchedId; ?>" readonly> </p><br>
         <p>Revision: <input type="number" name="revision" value="00" placeholder="00" maxlength="2"> </p><br>
         <p>Dateiklassifizierung: <input type="text" name="classification" value=""> </p><br>
         <p>Dateibezeichnung: <input type="text" name="add_text" pattern="\w{0,10}" placeholder="max. 10 Zeichen" /></p><br>
