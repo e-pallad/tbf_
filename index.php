@@ -91,7 +91,7 @@
 
           fseek($file, 0);
 
-          header('Content-Type: text/csv');
+          header('Content-Type: text/csv; charset=UTF-8');
           header('Content-Disposition: attachment; filename="' . $filename . '";');
 
           ob_clean();
