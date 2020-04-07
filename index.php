@@ -127,7 +127,7 @@
         <p>Laufnummer: <input type="text" name="id" value="<?php echo $fetchedId; ?>" readonly> </p><br>
         <p>Revision: <input type="number" name="revision" value="00" placeholder="00" maxlength="2"> </p><br>
         <p>Dateiklassifizierung: <input type="text" name="classification" value=""> </p><br>
-        <p>Dateibezeichnung: <input type="text" name="add_text" pattern="[a-zA-ZäöüÄÖÜ _-]\w{0,25}" placeholder="max. 25 Zeichen" /></p><br>
+        <p>Dateibezeichnung: <input type="text" name="add_text" pattern="[a-zA-ZäöüÄÖÜ _-]{0,25}" placeholder="max. 25 Zeichen" /></p><br>
         <input type="submit" name="submit" />
       </form>
     </div>
