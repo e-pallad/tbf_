@@ -26,13 +26,13 @@
       $conn = new mysqli($servername, $username, $password, $dbname);
 
       $selectid = "SELECT id FROM filename ORDER BY id DESC LIMIT 1";
-      $fetchedId = str_pad($conn->query($selectid)->fetch_row()[0]+1, 6, '0', STR_PAD_LEFT);
+      $fetchedId = str_pad($conn->query($selectid)->fetch_row()[0]+1, 5, '0', STR_PAD_LEFT);
 
       $message = "";
       if(isset($_POST['submit'])) {
 
         $selectid = "SELECT id FROM filename ORDER BY id DESC LIMIT 1";
-        $newid = str_pad($conn->query($selectid)->fetch_row()[0]+1, 6, '0', STR_PAD_LEFT);
+        $newid = str_pad($conn->query($selectid)->fetch_row()[0]+1, 5, '0', STR_PAD_LEFT);
 
         $project = mysqli_real_escape_string($conn, $_POST['project']);
         $creator = mysqli_real_escape_string($conn, $_POST['creator']);
