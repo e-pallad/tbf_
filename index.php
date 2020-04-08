@@ -129,13 +129,13 @@
         <p>Ersteller: <select name="creator">
           <?php
           $optionen = array(
-            '0100' => "TBF allgemein/interdisziplinär (GPL / TPL)",
-            '0200' => "TBF EMT (RGR, Feuerung, Kessel, WDK, Nebenbetriebe)",
-            '0300' => "TBF Bau (Hoch- und Tiefbau)",
-            '0400' => "TBF EMSRL-T",
-            '0500' => "TBF Gebäudetechnik",
-            '0600' => "TBF Reserve",
-            '0700' => "TBF Bewilligung / Raumplanung / Umwelt"
+            '0010' => "Bauherr (BH)",
+            '0100' => "GP allgemein/interdisziplinär (GPL / TPL)",
+            '0200' => "EMT (RGR, Feuerung, Kessel, WDK, Nebenbetriebe)",
+            '0300' => "Bau (Hoch- und Tiefbau)",
+            '0400' => "EMSRL-T (Elektro EMT und Gebäudesteuerung)",
+            '0500' => "Gebäudetechnik (HLKSE)",
+            '0600' => "Bewilligung / Raumplanung / Umwelt (Sonstige)"
           );
           foreach ( $optionen as $value => $beschreibung ) {
             echo "<option value=" . $value . ">" . $beschreibung . "</option>";
