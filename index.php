@@ -133,11 +133,30 @@
           foreach ( $optionen as $value => $beschreibung ) {
             echo "<option value=" . $value . ">" . $beschreibung . "</option>";
           };
-          ?>
+           ?>
           </select></p><br>
         <p>Laufnummer: <input type="text" name="id" value="<?php echo $fetchedId; ?>" readonly> </p><br>
         <p>Revision: <input type="number" name="revision" value="0" placeholder="00" maxlength="2"> </p><br>
-        <p>Dateiklassifizierung: <input type="text" name="classification" value=""> </p><br>
+        <p>Klassifizierung: <select name="classification">
+          <?php
+            $classOptions = array(
+              'BD' => "BD - Bewilligungsrelevante Dokumente",
+              'BG' => "BG - Berichte / Gutachten",
+              'FV' => "FV - Formatvorlagen",
+              'KM' => "KM - Kostenmanagement",
+              'KO' => "KO - Korrespondenz",
+              'PQ' => "PQ - PQM",
+              'PZ' => "PZ - Pläne, Zeichnungen, Modelle"
+              'SB' => "SB - Sitzungen / Besprechungen",
+              'SL' => "SL - Schemata und Listen",
+              'TD' => "TD - Technische Dokumente",
+              'VM' => "VM - Vertragsmanagement"
+            );
+            foreach ( $classOptions as $value => $beschreibung ) {
+              echo "<option value=" . $value . ">" . $beschreibung . "</option>";
+            };
+           ?>
+        </select></p><br>
         <p>Dateibezeichnung: <input type="text" name="add_text" pattern="[a-zA-ZäöüÄÖÜ _-]{0,25}" placeholder="max. 25 Zeichen" /></p><br>
         <input type="submit" name="submit" />
       </form>
