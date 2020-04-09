@@ -136,7 +136,7 @@
            ?>
           </select></p><br>
         <p>Laufnummer: <input type="text" name="id" value="<?php echo $fetchedId; ?>" readonly> </p><br>
-        <p>Revision: <input type="number" name="revision" value="0" placeholder="00" maxlength="2"> </p><br>
+        <p>Revision: <input type="number" name="revision" placeholder="00" maxlength="2"> </p><br>
         <p>Klassifizierung: <select name="classification">
           <?php
             $classOptions = array(
