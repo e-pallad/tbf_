@@ -163,7 +163,7 @@
     </div>
     <div class="csv-form">
       <form action="<?php echo htmlspecialchars($_SERVER["PHP_SELF"]);?>" method="post">
-        <input type="submit" name="create-csv" value="CSV generieren" class="csv-button" />
+        <input type="submit" name="create-csv" value="Dokumentenverzeichnis anzeigen" class="csv-button" />
       </form>
     </div>
     <?php mysqli_close($conn); ?>
