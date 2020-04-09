@@ -157,7 +157,7 @@
             };
            ?>
         </select></p><br>
-        <p>Dateibezeichnung: <input type="text" name="add_text" pattern="[a-zA-ZäöüÄÖÜ _-]{0,25}" placeholder="max. 25 Zeichen" /></p><br>
+        <p>Titel: <input type="text" name="add_text" pattern="[0-9a-zA-ZäöüÄÖÜ _-]{0,25}" placeholder="max. 25 Zeichen" /></p><br>
         <input type="submit" name="submit" />
       </form>
     </div>
