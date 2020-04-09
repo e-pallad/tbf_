@@ -146,7 +146,7 @@
               'KM' => "KM - Kostenmanagement",
               'KO' => "KO - Korrespondenz",
               'PQ' => "PQ - PQM",
-              'PZ' => "PZ - Pläne, Zeichnungen, Modelle"
+              'PZ' => "PZ - Pläne, Zeichnungen, Modelle",
               'SB' => "SB - Sitzungen / Besprechungen",
               'SL' => "SL - Schemata und Listen",
               'TD' => "TD - Technische Dokumente",
