@@ -118,7 +118,7 @@
     </div>
     <div class="form">
       <form action="<?php echo htmlspecialchars($_SERVER["PHP_SELF"]);?>" method="post">
-        <p>Projektbezeichnung: <input type="text" name="project" value="Linth" placeholder="Linth"/></p><br>
+        <p>Projektbezeichnung: <input type="text" name="project" value="Linth" placeholder="Linth" readonly></p><br>
         <p>Ersteller: <select name="creator">
           <?php
           $optionen = array(
