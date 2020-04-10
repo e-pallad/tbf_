@@ -97,7 +97,7 @@
               $row['revision'],
               $row['classification'],
               convertToWindowsCharset($row['add_text']),
-              $row['filename']
+              convertToWindowsCharset($row['filename'])
             );
             fputcsv($file, $rowdata, $delimiter);
           }
