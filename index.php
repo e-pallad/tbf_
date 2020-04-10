@@ -39,6 +39,7 @@
         $revision = mysqli_real_escape_string($conn, $_POST['revision']);
         $classification = mysqli_real_escape_string($conn, $_POST['classification']);
         $add_text = mysqli_real_escape_string($conn, $_POST['add_text']);
+        $sqlFileName = $project."-".$creator."-".$id."-".$revision."-".$classification."-".$add_text;
 
         $insertid = "INSERT INTO filename (
           project,
@@ -54,8 +55,13 @@
           '$id',
           '$revision',
           '$classification',
+<<<<<<< HEAD
           '$add_text',
           '$project."-".$creator."-".$id."-".$revision."-".$classification."-".$add_text'
+=======
+          '$add_text'
+          '$sqlFileName'
+>>>>>>> 7838cecb7e7782bd4175138dbafab0212bd6a72f
         )";
 
         $conn->query($insertid);
