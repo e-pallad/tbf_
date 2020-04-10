@@ -46,14 +46,16 @@
           id,
           revision,
           classification,
-          add_text
+          add_text,
+          filename
         ) VALUES (
           '$project',
           '$creator',
           '$id',
           '$revision',
           '$classification',
-          '$add_text'
+          '$add_text',
+          '$project."-".$creator."-".$id."-".$revision."-".$classification."-".$add_text'
         )";
 
         $conn->query($insertid);
@@ -62,7 +64,6 @@
           $errorMessage = "Irgendwas lief schief, mit folgender Fehlernummer: " . $conn->connect_errno;
         } else {
           $filename = $project."-".$creator."-".$id."-".$revision."-".$classification."-".$add_text;
-          $message = "Erfolgreich! Das Dokument hat diesen Namen: <br>".$project."-".$creator."-".$id."-".$revision."-".$classification."-".$add_text;
         }
       } elseif (isset($_POST['create-csv'])) {
         $selectall = "SELECT * FROM filename";
