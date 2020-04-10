@@ -55,13 +55,8 @@
           '$id',
           '$revision',
           '$classification',
-<<<<<<< HEAD
           '$add_text',
-          '$project."-".$creator."-".$id."-".$revision."-".$classification."-".$add_text'
-=======
-          '$add_text'
           '$sqlFileName'
->>>>>>> 7838cecb7e7782bd4175138dbafab0212bd6a72f
         )";
 
         $conn->query($insertid);
