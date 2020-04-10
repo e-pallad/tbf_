@@ -85,7 +85,7 @@
 
 
           $file = fopen('php://memory', 'w');
-          $header = array("Timestamp", "Projekt", "Ersteller", "Laufnummer", "Revision", "Detailklassifizierung", "Titel");
+          $header = array("Timestamp", "Projekt", "Ersteller", "Laufnummer", "Revision", "Detailklassifizierung", "Titel", "Dateiname");
           fputcsv($file, $header, $delimiter);
 
           while ($row = $query->fetch_assoc()) {
@@ -96,7 +96,8 @@
               $row['id'],
               $row['revision'],
               $row['classification'],
-              convertToWindowsCharset($row['add_text'])
+              convertToWindowsCharset($row['add_text']),
+              $row['filename']
             );
             fputcsv($file, $rowdata, $delimiter);
           }
