@@ -14,7 +14,7 @@
     input::-webkit-outer-spin-button, input::-webkit-inner-spin-button {-webkit-appearance: none; margin: 0;}
     input[type=number] {-moz-appearance:textfield;}
     .csv-button {margin-right: 5px;}
-    .copyright {font-size: 12px; position: fixed; bottom 0;}
+    .copyright {font-size: 12px; position: fixed; bottom: 0;}
     .copyright a {color: black; text-decoration: none;}
   </style>
   <body>
