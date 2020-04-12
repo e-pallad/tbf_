@@ -14,6 +14,7 @@
     input::-webkit-outer-spin-button, input::-webkit-inner-spin-button {-webkit-appearance: none; margin: 0;}
     input[type=number] {-moz-appearance:textfield;}
     .csv-button {margin-right: 5px;}
+    .footer {position: fixed; bottom: 0;}
   </style>
   <body>
     <?php
@@ -172,5 +173,9 @@
       </form>
     </div>
     <?php mysqli_close($conn); ?>
+    <div class="footer">
+      <p><a href="http://www.pp-itservices.de"><?php echo date("Y"); ?> &copy; Eric Pallad</a> - Dokumententitelgenerator - v1.0.0</p>
+      <p>Letzte Änderung: 12.04.2020</p>
+    </div>
   </body>
 </html>
