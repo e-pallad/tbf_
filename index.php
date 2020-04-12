@@ -9,7 +9,7 @@
     body {font-family: Arial, Calibri, sans-serif; font-size: 21px;}
     .container {display: flex; flex-direction: column; justify-content: center; align-items: center;}
     .logo-img {max-width: 250px;}
-    .form, .csv-form {max-width: 600px; margin: auto;}
+    .form {width: 600px; margin: auto;}
     input, select {float: right; font-size: 75%; padding: 5px;}
     input::-webkit-outer-spin-button, input::-webkit-inner-spin-button {-webkit-appearance: none; margin: 0;}
     input[type=number] {-moz-appearance:textfield;}
