@@ -7,14 +7,14 @@
   </head>
   <style>
     body {font-family: Arial, Calibri, sans-serif; font-size: 21px;}
-    .report, .logo {display: flex; justify-content: center; align-items: center;}
+    .report, .logo, .footer {display: flex; justify-content: center; align-items: center;}
     .logo-img {max-width: 250px;}
     .form, .csv-form {max-width: 600px; margin: auto;}
     input, select {float: right; font-size: 75%; padding: 5px;}
     input::-webkit-outer-spin-button, input::-webkit-inner-spin-button {-webkit-appearance: none; margin: 0;}
     input[type=number] {-moz-appearance:textfield;}
     .csv-button {margin-right: 5px;}
-    .footer {position: fixed; bottom: 0;}
+    .footer {font-size: 12px; position: fixed; bottom: 0;}
   </style>
   <body>
     <?php
