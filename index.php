@@ -13,6 +13,7 @@
     input, select {float: right; font-size: 75%; padding: 5px;}
     input::-webkit-outer-spin-button, input::-webkit-inner-spin-button {-webkit-appearance: none; margin: 0;}
     input[type=number] {-moz-appearance:textfield;}
+    .grayed {background-color: lightgray;}
     .csv-button {margin-right: 5px;}
     .copyright {font-size: 12px; text-align: center; width: 600px; position: fixed; bottom: 0;}
     .copyright a {color: black; text-decoration: none;}
