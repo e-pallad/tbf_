@@ -143,7 +143,7 @@
              ?>
             </select></p><br>
           <p>Laufnummer: <input type="text" name="id" value="<?php echo $fetchedId; ?>" readonly> </p><br>
-          <p>Revision: <input type="number" name="revision" placeholder="00" maxlength="2"> </p><br>
+          <p>Revision: <input type="number" name="revision" value="00" placeholder="00" maxlength="2"> </p><br>
           <p>Klassifizierung: <select name="classification">
             <?php
               $classOptions = array(
@@ -164,8 +164,8 @@
               };
              ?>
           </select></p><br>
-          <p>Titel: <input type="text" name="add_text" pattern="[0-9a-zA-ZäöüÄÖÜ _-]{0,30}" placeholder="max. 30 Zeichen" /></p><br>
-          <p>Dateiname: <input type="text" value="<?php echo $filename; ?>" size="45" readonly /></p><br>
+          <p>Titel: <input type="text" name="add_text" size="45" pattern="[0-9a-zA-ZäöüÄÖÜ _-]{0,30}" placeholder="max. 30 Zeichen" /></p><br>
+          <p>Dateiname: <input type="text" value="<?php echo $filename; ?>" size="45" readonly class="grayed" /></p><br>
           <input type="submit" name="submit" value="Dateiname generieren" />
           <input type="submit" name="create-csv" value="Dokumentenverzeichnis anzeigen" class="csv-button" />
         </form>
@@ -174,7 +174,7 @@
       <div class="copyright">
         <p>
           <a href="http://www.pp-itservices.de">&copy; <?php echo date("Y"); ?> Eric Pallad</a>
-          - Dokumententitelgenerator - v1.0.0 - Letzte Änderung: 12.04.2020
+          - Dokumententitelgenerator - v1.0.1 - Letzte Änderung: 15.04.2020
         </p>
       </div>
     </div>
