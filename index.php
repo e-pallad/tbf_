@@ -15,7 +15,7 @@
     input[type=number] {-moz-appearance:textfield;}
     .grayed {background-color: lightgray;}
     .csv-button {margin-right: 5px;}
-    .copyright {font-size: 12px; text-align: center; width: 600px; position: fixed; bottom: 0;}
+    .copyright {font-size: 12px; text-align: center; width: 600px; position: fixed; top: 0;}
     .copyright a {color: black; text-decoration: none;}
   </style>
   <body>
