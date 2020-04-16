@@ -143,7 +143,7 @@
             };
              ?>
             </select></p><br>
-          <p>Laufnummer: <input type="text" name="id" value="<?php echo $fetchedId; ?>" readonly> </p><br>
+          <p>Laufnummer: <input type="text" name="id" value="<?php echo $fetchedId; ?>" class="grayed" readonly> </p><br>
           <p>Revision: <input type="number" name="revision" value="00" placeholder="00" maxlength="2"> </p><br>
           <p>Klassifizierung: <select name="classification">
             <?php
@@ -174,8 +174,7 @@
       <?php mysqli_close($conn); ?>
       <div class="copyright">
         <p>
-          <a href="http://www.pp-itservices.de">&copy; <?php echo date("Y"); ?> Eric Pallad</a>
-          - Dokumententitelgenerator - v1.0.1 - Letzte Änderung: 15.04.2020
+          Dokumententitelgenerator - v1.0.2 - Letzte Änderung: 16.04.2020
         </p>
       </div>
     </div>
