@@ -39,7 +39,7 @@
         $project = mysqli_real_escape_string($conn, $_POST['project']);
         $creator = mysqli_real_escape_string($conn, $_POST['creator']);
         $id = $newid;
-        $revision = mysqli_real_escape_string($conn, $_POST['revision']);
+        $revision = str_pad(mysqli_real_escape_string($conn, $_POST['revision']), 2, '0', STR_PAD_LEFT);
         $classification = mysqli_real_escape_string($conn, $_POST['classification']);
         $add_text = mysqli_real_escape_string($conn, $_POST['add_text']);
         $sqlFileName = $project."-".$creator."-".$id."-".$revision."-".$classification."-".$add_text;
