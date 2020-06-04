@@ -37,26 +37,26 @@
         $newid = str_pad($conn->query($selectid)->fetch_row()[0]+1, 5, '0', STR_PAD_LEFT);
 
         $project = mysqli_real_escape_string($conn, $_POST['project']);
-        $creator = mysqli_real_escape_string($conn, $_POST['creator']);
+        $order = mysqli_real_escape_string($conn, $_POST['order']);
         $id = $newid;
-        $revision = str_pad(mysqli_real_escape_string($conn, $_POST['revision']), 2, '0', STR_PAD_LEFT);
+        $version = str_pad(mysqli_real_escape_string($conn, $_POST['version']), 2, '0', STR_PAD_LEFT);
         $classification = mysqli_real_escape_string($conn, $_POST['classification']);
         $add_text = mysqli_real_escape_string($conn, $_POST['add_text']);
-        $sqlFileName = $project."-".$creator."-".$id."-".$revision."-".$classification."-".$add_text;
+        $sqlFileName = $project."-".$order."-".$id."-".$version."-".$classification."-".$add_text;
 
         $insertid = "INSERT INTO filename (
           project,
-          creator,
+          order,
           id,
-          revision,
+          version,
           classification,
           add_text,
           filename
         ) VALUES (
           '$project',
-          '$creator',
+          '$order',
           '$id',
-          '$revision',
+          '$version',
           '$classification',
           '$add_text',
           '$sqlFileName'
@@ -67,7 +67,7 @@
         if ($conn->connect_errno) {
           $errorMessage = "Irgendwas lief schief, mit folgender Fehlernummer: " . $conn->connect_errno;
         } else {
-          $filename = $project."-".$creator."-".$id."-".$revision."-".$classification."-".$add_text;
+          $filename = $project."-".$order."-".$id."-".$version."-".$classification."-".$add_text;
         }
       } elseif (isset($_POST['create-csv'])) {
         $selectall = "SELECT * FROM filename";
@@ -88,16 +88,16 @@
 
 
           $file = fopen('php://memory', 'w');
-          $header = array("Timestamp", "Projekt", "Ersteller", "Laufnummer", "Revision", "Detailklassifizierung", "Titel", "Dateiname");
+          $header = array("Timestamp", "Projekt", "Ordernummer", "Laufnummer", "Version", "Dokumentenart", "Freitext", "Dateiname");
           fputcsv($file, $header, $delimiter);
 
           while ($row = $query->fetch_assoc()) {
             $rowdata = array(
               $row['timestamp'],
               $row['project'],
-              $row['creator'],
+              $row['order'],
               $row['id'],
-              $row['revision'],
+              $row['version'],
               $row['classification'],
               convertToWindowsCharset($row['add_text']),
               convertToWindowsCharset($row['filename'])
@@ -119,7 +119,7 @@
     ?>
     <div class="copyright">
       <p>
-        Dokumententitelgenerator - v1.0.2 - Letzte Änderung: 16.04.2020
+        Dokumententitelgenerator - v1.1.0 - Letzte Änderung: 04.06.2020
       </p>
     </div>
     <div class="container">
@@ -132,16 +132,25 @@
       <div class="form">
         <form action="<?php echo htmlspecialchars($_SERVER["PHP_SELF"]);?>" method="post">
           <p>Projektbezeichnung: <input type="text" name="project" value="Linth" placeholder="Linth" readonly></p><br>
-          <p>Ersteller: <select name="creator">
+          <p>Ordnernummer: <select name="order">
             <?php
             $optionen = array(
-              '0010' => "0010 - Bauherr (BH)",
-              '0100' => "0100 - GP allgemein/interdisziplinär (GPL / TPL)",
-              '0200' => "0200 - EMT (RGR, Feuerung, Kessel, WDK, Nebenbetriebe)",
-              '0300' => "0300 - Bau (Hoch- und Tiefbau)",
-              '0400' => "0400 - EMSRL-T (Elektro EMT und Gebäudesteuerung)",
-              '0500' => "0500 - Gebäudetechnik (HLKSE)",
-              '0600' => "0600 - Bewilligung / Raumplanung / Umwelt (Sonstige)"
+              '101' => "101 - Grundlagen",
+              '102' => "102 - PQM",
+              '103' => "103 - Kostenmanagement",
+              '104' => "104 - Vertragsmanagement",
+              '105' => "105 - Sitzungen",
+              '106' => "106 - Korrespondenz",
+              '107' => "107 - Kommunikation",
+              '108' => "108 - 3D BIM-Koordination",
+              '120' => "120 - Vorstudie",
+              '131' => "131 - Vorprojekt",
+              '132' => "132 - Bauprojekt",
+              '133' => "133 - Bewilligungsverfahren",
+              '140' => "140 - Ausschreibung",
+              '150' => "150 - Realisierung",
+              '160' => "160 - Bewirtschaftung",
+              '170' => "170 - Fotos"
             );
             foreach ( $optionen as $value => $beschreibung ) {
               echo "<option value=" . $value . ">" . $beschreibung . "</option>";
@@ -149,28 +158,65 @@
              ?>
             </select></p><br>
           <p>Laufnummer: <input type="text" name="id" value="<?php echo $fetchedId; ?>" class="grayed" readonly> </p><br>
-          <p>Revision: <input type="number" name="revision" value="00" placeholder="00" maxlength="2"> </p><br>
-          <p>Klassifizierung: <select name="classification">
+          <p>Dokumentenart: <select name="classification">
             <?php
               $classOptions = array(
-                'BD' => "BD - Bewilligungsrelevante Dokumente",
-                'BG' => "BG - Berichte / Gutachten",
-                'FV' => "FV - Formatvorlagen",
-                'KM' => "KM - Kostenmanagement",
-                'KO' => "KO - Korrespondenz",
-                'PQ' => "PQ - PQM",
-                'PZ' => "PZ - Pläne, Zeichnungen, Modelle",
-                'SB' => "SB - Sitzungen / Besprechungen",
-                'SL' => "SL - Schemata und Listen",
-                'TD' => "TD - Technische Dokumente",
-                'VM' => "VM - Vertragsmanagement"
+                'AA' => "AA - Verwaltungstechnische Dokumente",
+                'AB' => "AB - Listen (Dokumente betreffend)",
+                'AV' => "AV - Ausführungsvorschrift",
+                'BD' => "BD - Projektleitungsdokumente",
+                'BE' => "BE - Ressourcenplanungsdokumente",
+                'BF' => "BF - Versand-, Lager und Transportdokumente",
+                'BH' => "BH - Dokumente zum Änderungswesen",
+                'BR' => "BR - Berichte",
+                'BS' => "BS - Objektschutzdokumente",
+                'CA' => "CA - Anfrage-, Kalkulations- und Angebotsdoumente",
+                'CB' => "CB - Genehmigungsdokumente",
+                'CC' => "CC - Vertragliche Dokumente",
+                'CD' => "CD - Bestell- und Lieferdokumente",
+                'CE' => "CE - Rechnungsdokuemnte",
+                'CF' => "CF - Versicherungsdokumente",
+                'CG' => "CG - Gewährleistungsdokumente",
+                'CH' => "CH - Gutachten",
+                'DA' => "DA - Datenblätter",
+                'DC' => "DC - Anleitungen und Handbücher",
+                'EP' => "EP - Dokumente des Sitzungswesens",
+                'FA' => "FA - Dokumente über gesetzliche Auflagen",
+                'FB' => "FB - Normen und Richtlinien",
+                'FC' => "FC - Technische Spezifikations-/Anforderungsdokumente",
+                'FD' => "FD - Dimensionierungsdokumente",
+                'GA' => "GA - Funktionsübersichtsdokumente",
+                'GB' => "GB - Fliessschemata",
+                'GC' => "GC - Dokumente der MMS-Gestaltung (Mensch-Maschine-Schnittstelle)",
+                'GE' => "GE - Funktionsbeschreibungen",
+                'GF' => "GF - Funktionsschaltplaene",
+                'GP' => "GP - Signalbeschreibungen",
+                'GQ' => "GQ - Einstellwertdokumente",
+                'GS' => "GS - Schaltkreisdokumente",
+                'GT' => "GT - Softwarespezifische Dokumente",
+                'LA' => "LA - Erschliessungs- und Vermessungsdokumente",
+                'LB' => "LB - Erdbau- und Fundamentbaudokumente",
+                'LC' => "LC - Rohbaudokumente",
+                'LH' => "LH - Orte in Gebaeuden",
+                'MD' => "MD - Fachmodelle",
+                'MK' => "MK - Koordinationsmodell",
+                'PL' => "PL - Pläne",
+                'QA' => "QA - Qualitaetsmanagementdokumente",
+                'QB' => "QB - Sicherheitsbeschreibende Dokumente",
+                'QC' => "QC - Qualitaetsnachweisdokumente",
+                'SV' => "SV - Schriftverkehr",
+                'TA' => "TA - Tabellen",
+                'VE' => "VE - Veröffentlichungen",
+                'WA' => "WA - Einstellwertdokumente",
+                'WT' => "WT - Logbuecher"
               );
               foreach ( $classOptions as $value => $beschreibung ) {
                 echo "<option value=" . $value . ">" . $beschreibung . "</option>";
               };
              ?>
           </select></p><br>
-          <p>Titel: <input type="text" name="add_text" size="45" pattern="[0-9a-zA-ZäöüÄÖÜ _-]{0,45}" placeholder="max. 45 Zeichen" /></p><br>
+          <p>Version: <input type="number" name="version" value="00" placeholder="00" maxlength="2"> </p><br>
+          <p>Freitext: <input type="text" name="add_text" size="45" pattern="[0-9a-zA-ZäöüÄÖÜ _-]{0,45}" placeholder="max. 45 Zeichen" /></p><br>
           <p>Dateiname: <input type="text" value="<?php echo $filename; ?>" size="45" readonly class="grayed" /></p><br>
           <input type="submit" name="submit" value="Dateiname generieren" />
           <input type="submit" name="create-csv" value="Dokumentenverzeichnis anzeigen" class="csv-button" />
