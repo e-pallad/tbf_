@@ -78,7 +78,7 @@
           $filename = date("Ymd") . "_" . time() . "_datenexport.csv";
 
           /*
-            https://www.andrerinas.de/tutorials/php-umlautesonderzeichen-in-csv-export-encoding.html
+            https://www.andrerinas.de/tutorials/php-umlautesonderzeichen-in-csv-export-encoding.html new
           */
           function convertToWindowsCharset($string) {
             $charset =  mb_detect_encoding($string, "UTF-8, ISO-8859-1, ISO-8859-15", true);
